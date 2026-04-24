@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClubOps – Event Registry</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="event-registry">
+<div class="app-shell">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="app-name">ClubOps <span>Administration</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Main</div>
+      <button class="nav-item" data-page="admin-dashboard" onclick="location.href='admin.html'">
+        <span class="nav-icon">🏠</span> Dashboard
+      </button>
+      <button class="nav-item" data-page="event-registry" onclick="location.href='events.html'">
+        <span class="nav-icon">📋</span> Event Registry
+      </button>
+      <button class="nav-item" data-page="budget-approval" onclick="location.href='budget.html'">
+        <span class="nav-icon">💰</span> Budget Approval
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Account</div>
+      <button class="nav-item" data-page="admin-profile" onclick="location.href='admin_profile.html'">
+        <span class="nav-icon">👤</span> My Profile
+      </button>
+      <button class="nav-item" id="logout-btn">
+        <span class="nav-icon">🚪</span> Logout
+      </button>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar"></div>
+        <div class="sidebar-user-info">
+          <div class="user-name"></div>
+          <div class="user-role"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="hamburger">☰</button>
+    <div class="topbar-left">
+      <div class="topbar-title">Event Registry</div>
+      <div class="topbar-subtitle">Review & manage all club events</div>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-badge">ADMIN</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Summary Stats -->
+    <div class="stats-grid" style="margin-bottom:22px">
+      <div class="stat-card">
+        <div class="stat-label">Total Events</div>
+        <div class="stat-value" id="total-count">—</div>
+        <div class="stat-icon">📅</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Pending</div>
+        <div class="stat-value" id="pending-count" style="color:#b8860b">—</div>
+        <div class="stat-icon">⏳</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Approved</div>
+        <div class="stat-value" id="approved-count" style="color:#2e7d32">—</div>
+        <div class="stat-icon">✅</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Rejected</div>
+        <div class="stat-value" id="rejected-count" style="color:#c62828">—</div>
+        <div class="stat-icon">❌</div>
+      </div>
+    </div>
+
+    <!-- Events Table -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">📋 All Events</span>
+        <div class="flex gap-3 items-center" style="flex-wrap:wrap;gap:10px">
+          <input type="text" id="search-events" placeholder="🔍 Search events…" style="padding:6px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.85rem;outline:none;background:#fdfaf6" />
+          <select id="status-filter" style="padding:6px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.85rem;background:#fdfaf6;color:var(--text);outline:none">
+            <option value="all">All Statuses</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Event Name</th>
+                <th>Club</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="events-tbody">
+              <tr><td colspan="5"><div class="empty-state"><p>Loading…</p></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

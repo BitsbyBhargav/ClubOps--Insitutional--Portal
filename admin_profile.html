@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClubOps – Admin Profile</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="admin-profile">
+<div class="app-shell">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="app-name">ClubOps <span>Administration</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Main</div>
+      <button class="nav-item" data-page="admin-dashboard" onclick="location.href='admin.html'">
+        <span class="nav-icon">🏠</span> Dashboard
+      </button>
+      <button class="nav-item" data-page="event-registry" onclick="location.href='events.html'">
+        <span class="nav-icon">📋</span> Event Registry
+      </button>
+      <button class="nav-item" data-page="budget-approval" onclick="location.href='budget.html'">
+        <span class="nav-icon">💰</span> Budget Approval
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Account</div>
+      <button class="nav-item" data-page="admin-profile" onclick="location.href='admin_profile.html'">
+        <span class="nav-icon">👤</span> My Profile
+      </button>
+      <button class="nav-item" id="logout-btn">
+        <span class="nav-icon">🚪</span> Logout
+      </button>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar"></div>
+        <div class="sidebar-user-info">
+          <div class="user-name"></div>
+          <div class="user-role"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="hamburger">☰</button>
+    <div class="topbar-left">
+      <div class="topbar-title">My Profile</div>
+      <div class="topbar-subtitle">Account information</div>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-badge">ADMIN</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar" id="profile-initials">–</div>
+        <div>
+          <div class="profile-name" id="profile-name">–</div>
+          <div class="profile-role-badge" id="profile-role-badge">Administrator</div>
+        </div>
+      </div>
+      <div class="profile-body">
+        <div class="profile-field">
+          <label>Full Name</label>
+          <p id="profile-name-2">–</p>
+        </div>
+        <div class="profile-field">
+          <label>Email Address</label>
+          <p id="profile-email">–</p>
+        </div>
+        <div class="profile-field">
+          <label>System Role</label>
+          <p id="profile-role">Administrator</p>
+        </div>
+        <div class="profile-field">
+          <label>Access Level</label>
+          <p>Full System Access</p>
+        </div>
+        <hr class="profile-divider" />
+        <button class="btn btn-danger" id="logout-profile-btn" style="width:100%;justify-content:center;padding:11px">
+          🚪 Sign Out of ClubOps
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="admin.html" class="btn btn-outline">🏠 Dashboard</a>
+      <a href="events.html" class="btn btn-outline">📋 Event Registry</a>
+      <a href="budget.html" class="btn btn-outline">💰 Budget Approval</a>
+    </div>
+
+  </main>
+</div>
+<script src="script.js"></script>
+<script>
+  // Sync profile-name-2
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const n = document.getElementById('profile-name');
+      const n2 = document.getElementById('profile-name-2');
+      if (n && n2) n2.textContent = n.textContent;
+    }, 100);
+  });
+</script>
+</body>
+</html>

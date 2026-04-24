@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClubOps – Propose Event</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="ch-propose-event">
+<div class="app-shell">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="app-name">ClubOps <span>Club Portal</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Navigation</div>
+      <button class="nav-item" data-page="ch-dashboard" onclick="location.href='clubhead.html'">
+        <span class="nav-icon">🏠</span> My Dashboard
+      </button>
+      <button class="nav-item" data-page="ch-propose-event" onclick="location.href='propose_event.html'">
+        <span class="nav-icon">📝</span> Propose Event
+      </button>
+      <button class="nav-item" data-page="ch-budget" onclick="location.href='clubhead_budget.html'">
+        <span class="nav-icon">💵</span> Budget Request
+      </button>
+      <button class="nav-item" data-page="ch-submissions" onclick="location.href='submissions.html'">
+        <span class="nav-icon">📊</span> My Submissions
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Account</div>
+      <button class="nav-item" data-page="ch-profile" onclick="location.href='clubhead_profile.html'">
+        <span class="nav-icon">👤</span> My Profile
+      </button>
+      <button class="nav-item" id="logout-btn">
+        <span class="nav-icon">🚪</span> Logout
+      </button>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar"></div>
+        <div class="sidebar-user-info">
+          <div class="user-name"></div>
+          <div class="user-role"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="hamburger">☰</button>
+    <div class="topbar-left">
+      <div class="topbar-title">Propose an Event</div>
+      <div class="topbar-subtitle">Submit a new event for admin approval</div>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-badge" style="background:var(--gold);color:var(--maroon)">CLUB HEAD</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:22px;align-items:start" class="propose-grid">
+
+      <!-- Form Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">📝 Event Proposal Form</span>
+        </div>
+        <div class="panel-body">
+          <form id="event-proposal-form">
+            <div class="form-group">
+              <label>Event Name <span style="color:var(--maroon)">*</span></label>
+              <input type="text" id="ep-name" placeholder="Enter a descriptive event name" required />
+            </div>
+            <div class="form-group">
+              <label>Event Description</label>
+              <textarea id="ep-desc" placeholder="Describe the purpose, activities, and expected outcomes of this event…"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Event Date <span style="color:var(--maroon)">*</span></label>
+              <input type="date" id="ep-date" required />
+            </div>
+
+            <!-- Status indicator (readonly) -->
+            <div class="form-group">
+              <label>Initial Status</label>
+              <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fdf8f0;border:1.5px solid var(--border);border-radius:var(--radius)">
+                <span class="badge badge-pending">pending</span>
+                <span class="text-sm text-muted">All new proposals start as Pending</span>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-maroon" style="flex:1;justify-content:center;padding:12px">
+                🚀 Submit Event Proposal
+              </button>
+              <button type="reset" class="btn btn-outline">Clear</button>
+            </div>
+          </form>
+
+          <!-- Success message -->
+          <div id="proposal-result" class="hidden" style="margin-top:18px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:var(--radius);padding:16px">
+            <div style="font-weight:600;color:#2e7d32;margin-bottom:4px">✅ Proposal Submitted!</div>
+            <div style="font-size:.88rem;color:#388e3c">Your event proposal has been submitted with status:
+              <span class="badge badge-pending" id="proposal-status">pending</span>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px">
+              <a href="submissions.html" class="btn btn-sm btn-success">📊 Track Submissions</a>
+              <a href="clubhead_budget.html" class="btn btn-sm btn-outline">💰 Submit Budget</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Panel -->
+      <div>
+        <div class="panel" style="margin-bottom:16px">
+          <div class="panel-header">
+            <span class="panel-title">ℹ️ Submission Guide</span>
+          </div>
+          <div class="panel-body">
+            <div style="font-size:.88rem;color:var(--text-muted);line-height:1.8">
+              <p style="margin-bottom:10px">📌 <strong>Step 1:</strong> Fill in event details and submit proposal.</p>
+              <p style="margin-bottom:10px">⏳ <strong>Step 2:</strong> Admin reviews your proposal.</p>
+              <p style="margin-bottom:10px">✅ <strong>Step 3:</strong> If approved, submit a budget request.</p>
+              <p>📦 <strong>Step 4:</strong> Admin allocates resources to your event.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">📋 Status Flow</span>
+          </div>
+          <div class="panel-body">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <span class="badge badge-pending">pending</span>
+                <span class="text-sm">Awaiting admin review</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span class="badge badge-approved">approved</span>
+                <span class="text-sm">Cleared to proceed</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span class="badge badge-rejected">rejected</span>
+                <span class="text-sm">Not approved</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<style>
+@media (max-width: 768px) {
+  .propose-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+
+<script src="script.js"></script>
+</body>
+</html>

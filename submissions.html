@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClubOps – My Submissions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="ch-submissions">
+<div class="app-shell">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="app-name">ClubOps <span>Club Portal</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Navigation</div>
+      <button class="nav-item" data-page="ch-dashboard" onclick="location.href='clubhead.html'">
+        <span class="nav-icon">🏠</span> My Dashboard
+      </button>
+      <button class="nav-item" data-page="ch-propose-event" onclick="location.href='propose_event.html'">
+        <span class="nav-icon">📝</span> Propose Event
+      </button>
+      <button class="nav-item" data-page="ch-budget" onclick="location.href='clubhead_budget.html'">
+        <span class="nav-icon">💵</span> Budget Request
+      </button>
+      <button class="nav-item" data-page="ch-submissions" onclick="location.href='submissions.html'">
+        <span class="nav-icon">📊</span> My Submissions
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Account</div>
+      <button class="nav-item" data-page="ch-profile" onclick="location.href='clubhead_profile.html'">
+        <span class="nav-icon">👤</span> My Profile
+      </button>
+      <button class="nav-item" id="logout-btn">
+        <span class="nav-icon">🚪</span> Logout
+      </button>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar"></div>
+        <div class="sidebar-user-info">
+          <div class="user-name"></div>
+          <div class="user-role"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="hamburger">☰</button>
+    <div class="topbar-left">
+      <div class="topbar-title">My Submissions</div>
+      <div class="topbar-subtitle">Track all your event and budget submissions</div>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-badge" style="background:var(--gold);color:var(--maroon)">CLUB HEAD</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Events Table -->
+    <div class="panel" style="margin-bottom:22px">
+      <div class="panel-header">
+        <span class="panel-title">📋 Submitted Events</span>
+        <a href="propose_event.html" class="btn btn-sm btn-maroon">+ New Proposal</a>
+      </div>
+      <div class="panel-body" style="padding:0">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Event Name</th>
+                <th>Event Date</th>
+                <th>Submitted On</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="submissions-events-tbody">
+              <tr><td colspan="4"><div class="empty-state"><p>Loading…</p></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Budget Requests Table -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">💰 Budget Requests</span>
+        <a href="clubhead_budget.html" class="btn btn-sm btn-gold">+ New Request</a>
+      </div>
+      <div class="panel-body" style="padding:0">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Amount</th>
+                <th>Submitted On</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="submissions-budgets-tbody">
+              <tr><td colspan="4"><div class="empty-state"><p>Loading…</p></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+      <a href="propose_event.html" class="btn btn-maroon">📝 Propose New Event</a>
+      <a href="clubhead_budget.html" class="btn btn-outline">💵 Submit Budget Request</a>
+      <a href="clubhead.html" class="btn btn-outline">🏠 Back to Dashboard</a>
+    </div>
+
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

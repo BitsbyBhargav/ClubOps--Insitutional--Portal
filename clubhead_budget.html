@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClubOps – Budget Request</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="ch-budget">
+<div class="app-shell">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="app-name">ClubOps <span>Club Portal</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Navigation</div>
+      <button class="nav-item" data-page="ch-dashboard" onclick="location.href='clubhead.html'">
+        <span class="nav-icon">🏠</span> My Dashboard
+      </button>
+      <button class="nav-item" data-page="ch-propose-event" onclick="location.href='propose_event.html'">
+        <span class="nav-icon">📝</span> Propose Event
+      </button>
+      <button class="nav-item" data-page="ch-budget" onclick="location.href='clubhead_budget.html'">
+        <span class="nav-icon">💵</span> Budget Request
+      </button>
+      <button class="nav-item" data-page="ch-submissions" onclick="location.href='submissions.html'">
+        <span class="nav-icon">📊</span> My Submissions
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Account</div>
+      <button class="nav-item" data-page="ch-profile" onclick="location.href='clubhead_profile.html'">
+        <span class="nav-icon">👤</span> My Profile
+      </button>
+      <button class="nav-item" id="logout-btn">
+        <span class="nav-icon">🚪</span> Logout
+      </button>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar"></div>
+        <div class="sidebar-user-info">
+          <div class="user-name"></div>
+          <div class="user-role"></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="hamburger">☰</button>
+    <div class="topbar-left">
+      <div class="topbar-title">Budget Request</div>
+      <div class="topbar-subtitle">Submit a budget request for your event</div>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-badge" style="background:var(--gold);color:var(--maroon)">CLUB HEAD</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:22px;align-items:start" class="budget-grid">
+
+      <!-- Form -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">💵 Budget Request Form</span>
+        </div>
+        <div class="panel-body">
+
+          <div id="no-events-warning" class="hidden" style="background:#fff8e1;border:1px solid #ffe082;border-radius:var(--radius);padding:16px;margin-bottom:18px">
+            <div style="font-weight:600;color:#b8860b;margin-bottom:4px">⚠️ No Approved Events</div>
+            <div style="font-size:.88rem;color:#795548">You need at least one approved event before submitting a budget request.</div>
+            <a href="propose_event.html" class="btn btn-sm btn-gold" style="margin-top:10px;display:inline-flex">📝 Propose an Event</a>
+          </div>
+
+          <form id="budget-proposal-form">
+            <div class="form-group">
+              <label>Select Event <span style="color:var(--maroon)">*</span></label>
+              <select id="bp-event" required>
+                <option value="">— Loading events… —</option>
+              </select>
+              <div style="font-size:.78rem;color:var(--text-muted);margin-top:4px">Only approved events are listed here.</div>
+            </div>
+            <div class="form-group">
+              <label>Requested Amount (₹) <span style="color:var(--maroon)">*</span></label>
+              <input type="number" id="bp-amount" placeholder="e.g. 25000" min="100" step="100" required />
+            </div>
+            <div class="form-group">
+              <label>Justification / Description <span style="color:var(--maroon)">*</span></label>
+              <textarea id="bp-desc" placeholder="Describe what the budget will be used for (venue, equipment, materials, etc.)…" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Initial Status</label>
+              <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fdf8f0;border:1.5px solid var(--border);border-radius:var(--radius)">
+                <span class="badge badge-pending">pending</span>
+                <span class="text-sm text-muted">All budget requests start as Pending</span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-maroon" style="flex:1;justify-content:center;padding:12px">
+                💰 Submit Budget Request
+              </button>
+              <button type="reset" class="btn btn-outline">Clear</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <div class="panel" style="margin-bottom:16px">
+          <div class="panel-header">
+            <span class="panel-title">💡 Budget Tips</span>
+          </div>
+          <div class="panel-body" style="font-size:.88rem;color:var(--text-muted);line-height:1.8">
+            <p>✔️ Only approved events can receive budget requests</p>
+            <p>✔️ Provide a clear breakdown of costs</p>
+            <p>✔️ Be realistic with your estimates</p>
+            <p>✔️ Track your request status in <a href="submissions.html" style="color:var(--maroon);font-weight:600">My Submissions</a></p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">📊 My Budget Summary</span>
+          </div>
+          <div class="panel-body">
+            <div id="budget-summary-list">
+              <div class="empty-state" style="padding:20px 0">
+                <p>Loading summary…</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<style>
+@media (max-width: 768px) {
+  .budget-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+
+<script src="script.js"></script>
+<script>
+// Show budget summary after init
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const user = typeof Auth !== 'undefined' ? Auth.current() : null;
+    if (!user) return;
+    const myBudgets = DB.getBudgets().filter(b => b.clubHeadId === user.id);
+    const el = document.getElementById('budget-summary-list');
+    if (!el) return;
+
+    if (!myBudgets.length) {
+      el.innerHTML = `<div class="empty-state" style="padding:20px 0"><div class="empty-icon">💰</div><p>No budget requests yet.</p></div>`;
+      return;
+    }
+    el.innerHTML = myBudgets.map(b => `
+      <div class="resource-item" style="margin-bottom:8px">
+        <div class="resource-icon">💵</div>
+        <div class="resource-info">
+          <div class="resource-name" style="font-size:.85rem">${b.eventName}</div>
+          <div class="resource-meta">₹${Number(b.amount).toLocaleString('en-IN')}</div>
+        </div>
+        <span class="badge badge-${b.status}">${b.status}</span>
+      </div>`).join('');
+
+    // Check if any approved events available
+    const approvedEvents = DB.getEvents().filter(e => e.clubHeadId === user.id && e.status === 'approved');
+    if (!approvedEvents.length) {
+      document.getElementById('no-events-warning')?.classList.remove('hidden');
+    }
+  }, 200);
+});
+</script>
+</body>
+</html>
